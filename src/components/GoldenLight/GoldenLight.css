@@ -1,0 +1,64 @@
+/* ── Golden Light Overlay ── */
+
+.golden-light {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.golden-light__sweep {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    var(--color-gold-glow) 0%,
+    var(--color-gold-light) 40%,
+    transparent 70%
+  );
+  opacity: 0;
+  transform: scale(0.3);
+  transition: opacity 0.8s var(--ease-smooth), transform 1s var(--ease-smooth);
+}
+
+.golden-light__glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200vmax;
+  height: 200vmax;
+  margin-top: -100vmax;
+  margin-left: -100vmax;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(214, 177, 107, 0.4) 0%,
+    rgba(214, 177, 107, 0.1) 30%,
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-smooth);
+}
+
+/* Active state */
+.golden-light--active .golden-light__sweep {
+  opacity: 1;
+  transform: scale(1.5);
+}
+
+.golden-light--active .golden-light__glow {
+  opacity: 1;
+}
+
+/* Fading out */
+.golden-light--fading .golden-light__sweep {
+  opacity: 0;
+  transform: scale(2);
+  transition: opacity 1s var(--ease-smooth), transform 1.2s var(--ease-smooth);
+}
+
+.golden-light--fading .golden-light__glow {
+  opacity: 0;
+  transition: opacity 1s var(--ease-smooth);
+}

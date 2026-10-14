@@ -1,0 +1,105 @@
+/* ── Choice Buttons ── */
+
+.choice-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(16px, 3vh, 28px);
+  position: relative;
+  min-height: 140px;
+  padding: 16px;
+}
+
+/* Shared button base */
+.choice-buttons__yes,
+.choice-buttons__no {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  padding: 14px 40px;
+  border-radius: 50px;
+  letter-spacing: 0.5px;
+  min-width: 140px;
+  min-height: 48px;
+  transition:
+    transform 0.4s var(--ease-spring),
+    background-color var(--transition-base),
+    box-shadow var(--transition-base);
+  user-select: none;
+  touch-action: manipulation;
+}
+
+/* YES button */
+.choice-buttons__yes {
+  background: var(--color-btn-yes-bg);
+  color: var(--color-btn-yes-text);
+  box-shadow:
+    0 4px 16px rgba(214, 177, 107, 0.4),
+    0 0 0 0 rgba(214, 177, 107, 0);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+.choice-buttons__yes:hover:not(:disabled) {
+  background: var(--color-btn-yes-hover);
+  box-shadow:
+    0 6px 24px rgba(214, 177, 107, 0.5),
+    0 0 30px rgba(214, 177, 107, 0.2);
+}
+
+.choice-buttons__yes:active:not(:disabled) {
+  transform: scale(0.96) !important;
+}
+
+.choice-buttons__yes:disabled {
+  cursor: default;
+  animation: none;
+}
+
+/* NO button */
+.choice-buttons__no {
+  background: var(--color-btn-no-bg);
+  color: var(--color-btn-no-text);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  position: relative;
+  /* Snappy spring dodge movement */
+  transition:
+    transform 0.28s var(--ease-spring),
+    background-color var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/* Invisible proximity boundary so button dodges as mouse approaches */
+.choice-buttons__no::before {
+  content: '';
+  position: absolute;
+  inset: -20px;
+  border-radius: 50px;
+  pointer-events: auto;
+}
+
+.choice-buttons__no:hover:not(:disabled) {
+  background: var(--color-btn-no-hover);
+}
+
+.choice-buttons__no:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+  .choice-buttons {
+    gap: 14px;
+    min-height: 120px;
+    padding: 12px;
+  }
+
+  .choice-buttons__yes,
+  .choice-buttons__no {
+    padding: 12px 32px;
+    min-width: 120px;
+    min-height: 44px;
+  }
+}

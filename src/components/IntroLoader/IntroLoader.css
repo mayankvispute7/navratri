@@ -1,0 +1,44 @@
+/* ── IntroLoader ── */
+
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.intro-loader__surface {
+  position: absolute;
+  inset: 0;
+  background: var(--color-opening-bg);
+  transition: opacity 0.8s var(--ease-smooth);
+}
+
+.intro-loader__golden-sweep {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-gold-glow) 40%,
+    var(--color-gold-accent) 50%,
+    var(--color-gold-glow) 60%,
+    transparent 100%
+  );
+  transform: scaleX(0);
+  transform-origin: left center;
+  opacity: 0;
+}
+
+/* Sweep phase */
+.intro-loader--sweep .intro-loader__golden-sweep {
+  animation: goldenSweep 1.2s var(--ease-smooth) forwards;
+}
+
+.intro-loader--sweep .intro-loader__surface {
+  opacity: 0;
+  transition-delay: 0.6s;
+}

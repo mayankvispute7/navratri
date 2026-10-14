@@ -1,0 +1,70 @@
+/* ── VideoCharacter ── */
+
+.video-character {
+  position: relative;
+  width: 100%;
+  /* Fixed aspect ratio container — keeps character framing stable */
+  aspect-ratio: 9 / 16;
+  max-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-character__video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  /* No player chrome */
+  pointer-events: none;
+  /* Prevent black flash between loads */
+  background: transparent;
+  /* Seamless edge blend into page background */
+  -webkit-mask-image: radial-gradient(ellipse 94% 96% at 50% 50%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 94% 96% at 50% 50%, #000 72%, transparent 100%);
+}
+
+/* Hide native controls */
+.video-character__video::-webkit-media-controls {
+  display: none !important;
+}
+
+.video-character__video::-webkit-media-controls-enclosure {
+  display: none !important;
+}
+
+/* Fallback — shown behind video, visible if video fails */
+.video-character__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
+  opacity: 0.3;
+}
+
+.video-character__fallback-icon {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+/* When video has loaded, hide the fallback completely */
+.video-character__video[src]:not([src=""]) ~ .video-character__fallback {
+  /* Fallback stays behind, only visible if video layer is transparent/errored */
+}
+
+/* Responsive tweaks */
+@media (max-width: 767px) {
+  .video-character {
+    max-height: 35vh;
+    aspect-ratio: 3 / 4;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .video-character {
+    max-height: 50vh;
+  }
+}

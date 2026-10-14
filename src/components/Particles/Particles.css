@@ -1,0 +1,38 @@
+/* ── Particles ── */
+
+.particles-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  animation: particleDrift linear infinite;
+  will-change: transform, opacity;
+}
+
+/* Warm gold motes for the opening */
+.particle--warm {
+  background: radial-gradient(
+    circle,
+    var(--color-gold-accent) 0%,
+    rgba(214, 177, 107, 0.3) 70%,
+    transparent 100%
+  );
+  box-shadow: 0 0 6px var(--color-gold-light);
+}
+
+/* Lighter sparkles for the crimson section */
+.particle--crimson {
+  background: radial-gradient(
+    circle,
+    rgba(255, 245, 230, 0.8) 0%,
+    rgba(214, 177, 107, 0.4) 60%,
+    transparent 100%
+  );
+  box-shadow: 0 0 4px rgba(255, 245, 230, 0.3);
+}

@@ -1,0 +1,163 @@
+/* ── Opening Section (Scene 1) ── */
+
+.opening-section {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh; /* fallback */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-opening-bg);
+  overflow: hidden;
+  padding: 40px 20px;
+  padding-top: calc(40px + var(--safe-area-top));
+  padding-bottom: calc(80px + var(--safe-area-bottom));
+}
+
+.opening-section__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  max-width: 600px;
+  width: 100%;
+}
+
+/* ── Devi Maa ── */
+.opening-section__devi {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 1s var(--ease-smooth), transform 1s var(--ease-smooth);
+  display: flex;
+  justify-content: center;
+}
+
+.opening-section__devi--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.opening-section__devi-img {
+  width: auto;
+  max-width: min(340px, 82vw);
+  max-height: 48vh;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 8px 32px rgba(127, 36, 50, 0.18));
+}
+
+/* ── Greeting ── */
+.opening-section__greeting {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 1s var(--ease-smooth) 0.3s, transform 1s var(--ease-smooth) 0.3s;
+  /* Negative margin eliminates transparent padding gap from PNGs */
+  margin-top: clamp(-90px, -12vh, -60px);
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+
+.opening-section__greeting--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.opening-section__greeting-img {
+  width: auto;
+  max-width: min(290px, 75vw);
+  max-height: 22vh;
+  height: auto;
+  object-fit: contain;
+}
+
+/* ── Placeholder fallbacks ── */
+.opening-section__placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px;
+  color: var(--color-text-dark);
+}
+
+.opening-section__placeholder span {
+  font-size: clamp(3rem, 8vw, 5rem);
+}
+
+.opening-section__placeholder p {
+  font-family: var(--font-serif);
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  opacity: 0.7;
+}
+
+.opening-section__placeholder--text h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 600;
+  color: var(--color-proposal-bg);
+  text-align: center;
+}
+
+/* ── Scroll cue ── */
+.opening-section__scroll-cue {
+  position: absolute;
+  bottom: calc(24px + var(--safe-area-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+}
+
+.opening-section__scroll-arrow {
+  color: var(--color-gold-accent);
+  opacity: 0.6;
+  animation: scrollCue 2s ease-in-out infinite;
+}
+
+.opening-section__scroll-arrow svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* ── Responsive ── */
+@media (max-width: 767px) {
+  .opening-section {
+    padding: 20px 16px;
+    padding-top: calc(20px + var(--safe-area-top));
+    padding-bottom: calc(50px + var(--safe-area-bottom));
+  }
+
+  .opening-section__devi-img {
+    max-width: 250px;
+    max-height: 42vh;
+  }
+
+  .opening-section__greeting {
+    margin-top: clamp(-70px, -10vh, -45px);
+  }
+
+  .opening-section__greeting-img {
+    max-width: 210px;
+    max-height: 20vh;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .opening-section__devi-img {
+    max-width: 300px;
+    max-height: 44vh;
+  }
+
+  .opening-section__greeting {
+    margin-top: clamp(-80px, -11vh, -55px);
+  }
+
+  .opening-section__greeting-img {
+    max-width: 260px;
+  }
+}

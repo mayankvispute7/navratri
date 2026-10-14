@@ -1,0 +1,177 @@
+/* ── Proposal Section (Scene 2-4) ── */
+
+.proposal-section {
+  position: relative;
+  min-height: 100svh;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-proposal-bg);
+  overflow: hidden;
+  padding: 40px 20px;
+  padding-top: calc(40px + var(--safe-area-top));
+  padding-bottom: calc(40px + var(--safe-area-bottom));
+}
+
+/* ── Three-column desktop layout ── */
+.proposal-section__layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: clamp(16px, 3vw, 40px);
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Character containers ── */
+.proposal-section__character {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  transition: transform 1s var(--ease-smooth);
+}
+
+.proposal-section__character--boy {
+  justify-content: flex-end;
+}
+
+.proposal-section__character--girl {
+  justify-content: flex-start;
+}
+
+/* Acceptance: move characters toward center */
+.proposal-section__character--center.proposal-section__character--boy {
+  transform: translateX(40%);
+}
+
+.proposal-section__character--center.proposal-section__character--girl {
+  transform: translateX(-40%);
+}
+
+.proposal-section__video {
+  max-width: 280px;
+  width: 100%;
+}
+
+/* ── Center content ── */
+.proposal-section__center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 4vh, 36px);
+  text-align: center;
+  min-width: 280px;
+  max-width: 400px;
+  transition: opacity 0.8s var(--ease-smooth), transform 0.8s var(--ease-smooth);
+}
+
+.proposal-section__center--hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* ── Question text ── */
+.proposal-section__question {
+  font-family: var(--font-serif);
+  font-size: clamp(1.4rem, 3.5vw, 2.4rem);
+  font-weight: 600;
+  font-style: italic;
+  color: var(--color-text-light);
+  line-height: 1.4;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.02em;
+}
+
+/* ============================
+   RESPONSIVE BREAKPOINTS
+   ============================ */
+
+/* Tablet: compact 3-column or stacked */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .proposal-section__layout {
+    gap: 16px;
+  }
+
+  .proposal-section__video {
+    max-width: 200px;
+  }
+
+  .proposal-section__center {
+    min-width: 220px;
+  }
+
+  .proposal-section__question {
+    font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+  }
+}
+
+/* Mobile: stacked layout */
+@media (max-width: 767px) {
+  .proposal-section {
+    padding: 20px 16px;
+    padding-top: calc(20px + var(--safe-area-top));
+    padding-bottom: calc(20px + var(--safe-area-bottom));
+    align-items: flex-start;
+  }
+
+  .proposal-section__layout {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 12px;
+    align-items: flex-end;
+  }
+
+  /* Characters side-by-side on top row */
+  .proposal-section__character--boy {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: center;
+  }
+
+  .proposal-section__character--girl {
+    grid-column: 2;
+    grid-row: 1;
+    justify-content: center;
+  }
+
+  /* Question + buttons span full width below */
+  .proposal-section__center {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-width: unset;
+    gap: 16px;
+  }
+
+  .proposal-section__video {
+    max-width: 160px;
+  }
+
+  .proposal-section__question {
+    font-size: clamp(1.1rem, 5vw, 1.5rem);
+  }
+
+  /* Acceptance animation on mobile */
+  .proposal-section__character--center.proposal-section__character--boy {
+    transform: translateX(25%);
+  }
+
+  .proposal-section__character--center.proposal-section__character--girl {
+    transform: translateX(-25%);
+  }
+}
+
+/* Very small screens */
+@media (max-width: 359px) {
+  .proposal-section__video {
+    max-width: 130px;
+  }
+
+  .proposal-section__question {
+    font-size: 1rem;
+  }
+}
